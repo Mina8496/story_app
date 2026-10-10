@@ -1,13 +1,10 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:story_app/helper/api.dart';
 
 class AllCategoriesService {
   Future<List<dynamic>> getAllCategories() async {
-    http.Response resresponse = await http.get(
-      Uri.parse('https://fakestoreapi.com/products/categories'),
+    List<dynamic> data = await Api().get(
+      uri: 'https://fakestoreapi.com/products',
     );
-    List<dynamic> data = jsonDecode(resresponse.body);
     return data;
   }
 }
