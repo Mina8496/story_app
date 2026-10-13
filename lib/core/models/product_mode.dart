@@ -17,6 +17,7 @@ class ProductMode {
     required this.rating,
   });
 
+  /// Builds a product model from the JSON returned by the API.
   factory ProductMode.fromJson(Map<String, dynamic> jsonData) {
     return ProductMode(
       id: jsonData['id'] as int,
@@ -36,6 +37,7 @@ class RatingModel {
 
   RatingModel({required this.rating, required this.count});
 
+  /// Maps the API's `rate` field to the app's `rating` property.
   factory RatingModel.fromJson(Map<String, dynamic> jsonData) {
     return RatingModel(
       rating: (jsonData['rate'] as num).toDouble(),

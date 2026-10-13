@@ -5,20 +5,21 @@ class Api {
   /// Sends a GET request, optionally using bearer-token authentication.
   /// Returns the decoded response body or throws for a non-200 status.
   Future<dynamic> get({required String uri, String? token}) async {
-    Map<String, String> headers = {};
+    // Add authentication only when a token is provided.
+    final headers = <String, String>{};
+    if (token != null) headers['Authorization'] = 'Bearer $token';
 
-    if (token != null) {
-      headers.addAll({'Authorization': 'Bearer $token'});
-    }
-    http.Response resresponse = await http.get(Uri.parse(uri), headers: headers);
+    final response = await http
+        .get(Uri.parse(uri), headers: headers)
+        .timeout(const Duration(seconds: 15));
 
-    if (resresponse.statusCode == 200) {
-      return jsonDecode(resresponse.body);
-    } else {
+    if (response.statusCode != 200) {
       throw Exception(
-        'there is a problem with satus Code${resresponse.statusCode}  ',
+        'GET $uri failed: ${response.statusCode} ${response.body}',
       );
     }
+
+    return jsonDecode(response.body);
   }
 
   /// Sends a POST request, optionally using bearer-token authentication,
@@ -28,6 +29,7 @@ class Api {
     dynamic body,
     String? token,
   }) async {
+    // Attach a bearer token only when the caller provides one.
     Map<String, String> headers = {};
 
     if (token != null) {
@@ -61,7 +63,7 @@ class Api {
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-    // Send the request body and decode the successful JSON response.
+    // Send the update request and decode the successful JSON response.
     http.Response response = await http.post(
       Uri.parse(url),
       body: body,

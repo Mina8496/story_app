@@ -10,7 +10,9 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // Open the product details page when the card is tapped.
       onTap: () => AppNavigator.push(context, UpdateProductPage()),
+      // Layer the product image above the card for the overlapping layout.
       child: Stack(
         clipBehavior: Clip.none,
         children: [

@@ -4,8 +4,22 @@ import 'package:story_app/core/models/product_mode.dart';
 import 'package:story_app/core/services/get_all_product_service.dart';
 import 'package:story_app/feature/home_page/presentation/widgets/custom_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // Load products once when the page opens and reuse the result on rebuilds.
+  late final Future<List<ProductMode>> _productsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _productsFuture = AllProductService().getAllProduct();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +37,9 @@ class HomePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 65),
         child: FutureBuilder<List<ProductMode>>(
-          future: AllProductService().getAllProduct(),
+          future: _productsFuture,
           builder: (context, snapshot) {
+            // Handle the three states of the request: error, data, and loading.
             if (snapshot.hasError) {
               return Center(child: Text('حصل خطأ: ${snapshot.error}'));
             }

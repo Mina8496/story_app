@@ -10,6 +10,7 @@ class UpdateProduct {
     required String image,
     required String category,
   }) async {
+    // Send the edited product fields, then parse the API response.
     Map<String, dynamic> data = await Api().post(
       url: 'https://fakestoreapi.com/products',
       body: {
