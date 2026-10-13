@@ -4,15 +4,12 @@ A Flutter product catalog application built with the [Fake Store API](https://fa
 
 ## Preview
 
-Add the two screenshots and the demo video to `docs/media/` using the filenames below. GitHub will render the images directly in this README.
-
 | Home screen | Update product screen |
 | --- | --- |
 | ![Home screen](docs/media/home-screen.png) | ![Update product screen](docs/media/update-product-screen.png) |
 
 **Demo video:** [Watch the app demo](docs/media/app-demo.mp4)
 
-> The media files are intentionally not included in this repository yet. Replace the placeholders above after recording the app:
 > - `docs/media/home-screen.png`
 > - `docs/media/update-product-screen.png`
 > - `docs/media/app-demo.mp4`
