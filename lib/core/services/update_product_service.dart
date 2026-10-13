@@ -1,7 +1,7 @@
 import 'package:story_app/core/helper/api.dart';
 import 'package:story_app/core/models/product_mode.dart';
 
-class UpdateProduct {
+class UpdateProductService {
   /// Submits the supplied product fields and parses the API response.
   Future<ProductMode> updateProduct({
     required String title,

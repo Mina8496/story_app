@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:story_app/core/models/product_mode.dart';
+import 'package:story_app/core/services/update_product_service.dart';
 import 'package:story_app/core/widgets/custom_app_bar.dart';
 import 'package:story_app/core/widgets/custom_button.dart';
 import 'package:story_app/core/widgets/custom_text_field.dart';
@@ -6,11 +8,12 @@ import 'package:story_app/core/widgets/custom_text_field.dart';
 /// Displays a form for editing a product's details.
 // ignore: must_be_immutable
 class UpdateProductPage extends StatelessWidget {
-  // Values collected from the form fields.
+  // Values entered in the form and the product being edited.
   String? productName, dec, image;
-  int? price;
+  String? price;
+  final ProductMode product;
 
-  UpdateProductPage({super.key});
+  UpdateProductPage({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class UpdateProductPage extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 hintText: 'price',
                 onChanged: (data) {
-                  price = int.parse(data);
+                  price = data;
                 },
                 borderSide: BorderSide(color: Colors.black),
               ),
@@ -67,8 +70,16 @@ class UpdateProductPage extends StatelessWidget {
               CustomButton(
                 text: 'update product',
                 backgroundColor: Colors.blueAccent,
-                // Add the product update action here.
-                onPressed: () {},
+                onPressed: () {
+                  // Submit the edited fields and keep the product's category.
+                  UpdateProductService().updateProduct(
+                    title: productName!,
+                    price: price!,
+                    doc: dec!,
+                    image: image!,
+                    category: product.category,
+                  );
+                },
               ),
             ],
           ),

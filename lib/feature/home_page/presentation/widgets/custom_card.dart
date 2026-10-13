@@ -11,7 +11,8 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       // Open the product details page when the card is tapped.
-      onTap: () => AppNavigator.push(context, UpdateProductPage()),
+      onTap: () =>
+          AppNavigator.push(context, UpdateProductPage(product: product)),
       // Layer the product image above the card for the overlapping layout.
       child: Stack(
         clipBehavior: Clip.none,
@@ -62,7 +63,16 @@ class CustomCard extends StatelessWidget {
           Positioned(
             right: 32,
             top: -65,
-            child: Image.network(product.image, height: 100, width: 100),
+            child: Image.network(
+              product.image,
+              height: 100,
+              width: 100,
+              errorBuilder: (context, error, stackTrace) => const SizedBox(
+                height: 100,
+                width: 100,
+                child: Icon(Icons.image_not_supported_outlined),
+              ),
+            ),
           ),
         ],
       ),
