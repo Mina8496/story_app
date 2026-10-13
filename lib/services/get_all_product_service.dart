@@ -4,7 +4,7 @@ import 'package:story_app/models/product_mode.dart';
 class AllProductService {
   Future<List<ProductMode>> getAllProduct() async {
     List<dynamic> data = await Api().get(
-      uri: 'https://fakestoreapi.com/products/categories',
+      uri: 'https://fakestoreapi.com/products',
     );
 
     List<ProductMode> productList = [];
