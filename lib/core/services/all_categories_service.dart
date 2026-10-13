@@ -1,4 +1,5 @@
-import 'package:story_app/helper/api.dart';
+
+import 'package:story_app/core/helper/api.dart';
 
 class AllCategoriesService {
   Future<List<dynamic>> getAllCategories() async {

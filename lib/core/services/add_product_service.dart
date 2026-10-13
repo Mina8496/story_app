@@ -1,5 +1,6 @@
-import 'package:story_app/helper/api.dart';
-import 'package:story_app/models/product_mode.dart';
+
+import 'package:story_app/core/helper/api.dart';
+import 'package:story_app/core/models/product_mode.dart';
 
 class AddProduct {
   /// Creates a product through Fake Store API and parses its response.
