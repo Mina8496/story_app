@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:story_app/models/product_mode.dart';
+import 'package:story_app/core/models/product_mode.dart';
 
 class CustomCard extends StatelessWidget {
   final ProductMode product;
