@@ -78,7 +78,7 @@ test/
 ### Installation
 
 ```bash
-git clone <your-repository-url>
+git clone <https://github.com/Mina8496/story_app>
 cd story_app
 flutter pub get
 flutter run
