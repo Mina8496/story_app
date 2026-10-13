@@ -9,9 +9,9 @@ import 'package:story_app/core/widgets/custom_text_field.dart';
 /// Displays a form for editing a product's details.
 // ignore: must_be_immutable
 class UpdateProductPage extends StatefulWidget {
-  final ProductMode product;
+  ProductMode product;
 
-  const UpdateProductPage({super.key, required this.product});
+  UpdateProductPage({super.key, required this.product});
 
   @override
   State<UpdateProductPage> createState() => _UpdateProductPageState();
@@ -82,11 +82,11 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                 CustomButton(
                   text: 'update product',
                   backgroundColor: Colors.blueAccent,
-                  onPressed: () {
+                  onPressed: () async {
                     isLoading = true;
                     setState(() {});
+                    await updateProduct(widget.product);
                     try {
-                      updateProduct();
                       print('success');
                     } catch (e) {
                       print(e.toString());
@@ -103,13 +103,14 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
     );
   }
 
-  void updateProduct() {
-    UpdateProductService().updateProduct(
-      title: productName!,
-      price: price!,
-      doc: dec!,
-      image: image!,
-      category: widget.product.category,
+  Future<void> updateProduct(ProductMode product) async {
+    await UpdateProductService().updateProduct(
+      title: productName == null ? product.title : productName!,
+      price: price == null ? product.price.toString() : price!,
+      doc: dec == null ? product.description : dec!,
+      image: image == null ? product.image : image!,
+      category: product.category,
+      id: product.id,
     );
     isLoading = false;
   }
