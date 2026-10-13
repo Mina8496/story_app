@@ -111,14 +111,4 @@ The model tests cover numeric and string prices, optional ratings, and rating pa
 | `HomePage` | Displays the catalog and request states. |
 | `UpdateProductPage` | Lets the user edit a selected product. |
 
-## Add project media
 
-To complete the preview section, add these files before pushing to GitHub:
-
-```text
-docs/media/home-screen.png
-docs/media/update-product-screen.png
-docs/media/app-demo.mp4
-```
-
-For a video GitHub cannot play inline in the README, keep the clickable link above or upload the video to a GitHub Release and replace the link with its release URL.
